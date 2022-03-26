@@ -40,7 +40,7 @@
                               <td> {{ $item->status }} </td>
 
                               <td width="30%">
-                                  <a href="{{ route('view.orders',$item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a> <!--id dhorlam-->
+                                  <a href="{{ route('view.orders',$item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-eye"></i></a> <!--id dhorlam-->
                                   {{-- <a href="{{ route('confirm.orders.delete',$item->id) }}" class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash"></i></a> <!--sweet alret er vitorer delete id just eikhne use korci for alert message--> --}}
                               </td>>
                           </tr>

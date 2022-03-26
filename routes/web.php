@@ -18,6 +18,8 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ReportController;
+
 
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
@@ -260,11 +262,17 @@ Route::prefix('shipping')->group(function(){
     });
 
     Route::prefix('order')->group(function(){
-        Route::get('/pending',[OrderController::class, 'PendingOrder'])->name('pending');
+
         Route::get('/view/orders/{id}',[OrderController::class, 'ViewOrders'])->name('view.orders');
         Route::post('/pending/orders-delete/{id}',[OrderController::class, 'PendingOrdersDelete'])->name('pending.orders.delete');
-        Route::post('pending-to-confirm/{id}',[OrderController::class, 'PendingOrdersConfirm'])->name('pending.orders.confirm');
-        Route::post('pending-to-cancel/{id}',[OrderController::class, 'PendingOrdersCancel'])->name('pending.orders.cancel');
+        Route::get('pending-to-confirm/{id}',[OrderController::class, 'PendingToConfirm'])->name('pending.orders.confirm');
+        Route::get('pending-to-cancel/{id}',[OrderController::class, 'PendingToCancel'])->name('pending.orders.cancel');
+        Route::get('confirm-to-processing/{id}',[OrderController::class,'confirmToProcess']);
+        Route::get('processing-to-picked/{id}',[OrderController::class,'processToPicked']);
+        Route::get('picked-to-shipped/{id}',[OrderController::class,'pickedToShipped']);
+        Route::get('shipped-to-delivery/{id}',[OrderController::class,'shippedToDelivery']);
+
+        Route::get('/pending',[OrderController::class, 'PendingOrder'])->name('pending');
         Route::get('/confirm',[OrderController::class, 'ConfirmOrder'])->name('confirm');
         Route::post('/confirm/orders-delete/{id}',[OrderController::class, 'confirmOrdersDelete'])->name('confirm.orders.delete');
         Route::get('/processing',[OrderController::class, 'ProcessingOrder'])->name('processing');
@@ -272,6 +280,13 @@ Route::prefix('shipping')->group(function(){
         Route::get('/shipped',[OrderController::class, 'ShippedOrder'])->name('shipped');
         Route::get('/delivered',[OrderController::class, 'DeliveredOrder'])->name('delivered');
         Route::get('/cancel',[OrderController::class, 'CancelOrder'])->name('cancel');
+        //// invoice
+        Route::get('/invoice-download/{id}',[OrderController::class, 'downloadInvoice'])->name('order.invoice');
+
+    });
+
+    Route::prefix('report')->group(function(){
+        Route::get('view',[ReportController::class, 'ReportView'])->name('report-view');
 
     });
 
@@ -361,6 +376,11 @@ Route::get('/my/orders',[AllUserController::class, 'MyOrders'])->name('my.orders
 Route::get('/order_details/{order_id}',[AllUserController::class, 'OrdersDetails']);
 
 Route::get('/invoice_download/{order_id}',[AllUserController::class, 'InvoiceDownload']);
+
+Route::post('return_order_submit',[AllUserController::class, 'ReturnOrderSubmit'])->name('user-return-order');
+
+Route::get('/return/orders',[AllUserController::class, 'ReturnOrders'])->name('return.orders');
+Route::get('/cancel/orders',[AllUserController::class, 'CancelOrders'])->name('cancel.orders');
 
 
 

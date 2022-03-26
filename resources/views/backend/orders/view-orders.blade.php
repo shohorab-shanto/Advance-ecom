@@ -78,17 +78,17 @@
                     </li>
 
                     <li class="list-group-item">
-                        @if ($order->status == 'Pending')
-                        <a href="{{ url('pending-to-confirm/'.$order->id) }}" class="btn btn-block btn-success" id="confirm">Confirm Order</a>
-                        <a href="{{ url('pending-to-cancel/'.$order->id) }}" class="btn btn-block btn-danger" id="cancel">Cancel Order</a>
-                        {{-- @elseif($order->status == 'Confirm')
-                        <a href="{{ url('admin/confirm-to-processing/'.$order->id) }}" class="btn btn-block btn-success" id="processing">Processing</a>
-                        @elseif($order->status == 'Processing')
-                        <a href="{{ url('admin/processing-to-picked/'.$order->id) }}" class="btn btn-block btn-success" id="order">Picked</a>
-                        @elseif($order->status == 'Picked')
-                        <a href="{{ url('admin/picked-to-shipped/'.$order->id) }}" class="btn btn-block btn-success" id="order">Shipped</a>
-                        @elseif($order->status == 'Shipped')
-                        <a href="{{ url('admin/shipped-to-delivery/'.$order->id) }}" class="btn btn-block btn-success" id="order">Delevery</a> --}}
+                        @if ($order->status == 'pending')
+                        <a href="{{ url('order/pending-to-confirm/'.$order->id) }}" class="btn btn-block btn-success" id="confirm">Confirm Order</a>
+                        <a href="{{ url('order/pending-to-cancel/'.$order->id) }}" class="btn btn-block btn-danger" id="cancel">Cancel Order</a>
+                        @elseif($order->status == 'confirm')
+                        <a href="{{ url('order/confirm-to-processing/'.$order->id) }}" class="btn btn-block btn-success" id="processing">Processing</a>
+                        @elseif($order->status == 'processing')
+                        <a href="{{ url('order/processing-to-picked/'.$order->id) }}" class="btn btn-block btn-success" id="picked">Picked</a>
+                        @elseif($order->status == 'picked')
+                        <a href="{{ url('order/picked-to-shipped/'.$order->id) }}" class="btn btn-block btn-success" id="shipped">Shipped</a>
+                        @elseif($order->status == 'shipped')
+                        <a href="{{ url('order/shipped-to-delivery/'.$order->id) }}" class="btn btn-block btn-success" id="delivered">Delevery</a>
 
                         @endif
                     </li>

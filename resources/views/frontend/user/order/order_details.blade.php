@@ -179,7 +179,7 @@
                         </div>
                     </div>
 
-                @if ($order->status !== "Delivered")
+                @if ($order->status !== "delivered")
                 @else
                 @php
                     $order = App\Models\Order::where('id',$order->id)->where('return_reason','=',NULL)->first();
@@ -194,6 +194,7 @@
                         </div>
                         <button type="submit" class="btn btn-sm btn-danger">Submit</button>
                     </form>
+
                     @endif
                 @endif
 
