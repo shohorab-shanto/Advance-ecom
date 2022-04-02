@@ -82,6 +82,8 @@ Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.log
 
 Route::get('/admin/profile',[AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
 
+Route::get('/all/user',[AdminProfileController::class, 'AllUsers'])->name('all.user');
+
 Route::get('/admin/profile/edit',[AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
 
 Route::post('/admin/profile/store',[AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
@@ -89,7 +91,9 @@ Route::post('/admin/profile/store',[AdminProfileController::class, 'AdminProfile
 Route::get('/admin/change/password',[AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
 
 Route::post('/update/change/password',[AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password');
-
+//ban and unban
+Route::get('/user/banned/{id}',[AdminProfileController::class, 'UserBan'])->name('user.ban');
+Route::get('/user/unbanned/{id}',[AdminProfileController::class, 'UserUnban'])->name('user.unban');
 
 
 // admin brand all route
@@ -287,37 +291,14 @@ Route::prefix('shipping')->group(function(){
 
     Route::prefix('report')->group(function(){
         Route::get('view',[ReportController::class, 'ReportView'])->name('report-view');
+        Route::post('by_date',[ReportController::class, 'SearchByDate'])->name('search-by-date');
+        Route::post('by_month',[ReportController::class, 'SearchByMonth'])->name('search-by-month');
+        Route::post('by_year',[ReportController::class, 'SearchByYear'])->name('search-by-year');
 
     });
 
 
 }); // end middleware admin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

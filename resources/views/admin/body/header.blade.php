@@ -115,6 +115,7 @@
 			<ul class="dropdown-menu animated flipInX">
 			  <li class="user-body">
 				 <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="ti-user text-muted mr-2"></i> Profile</a>
+                 <a class="dropdown-item" href="{{ route('all.user') }}"><i class="ti-user text-muted mr-2"></i> All User</a>
 				 <a class="dropdown-item" href="{{ route('admin.change.password') }}"><i class="ti-wallet text-muted mr-2"></i> Change Password</a>
 				 <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i> Settings</a>
 				 <div class="dropdown-divider"></div>

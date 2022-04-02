@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
@@ -61,7 +62,31 @@ class AdminProfileController extends Controller
         }else{
             return redirect()->back();
         }
-
-
     } //end method
+
+    public function AllUsers(){
+        $users = User::all();
+        return view('backend.user.index',compact('users'));
+    }
+
+     //banned user
+     public function UserBan($user_id){
+        User::findOrFail($user_id)->update(['isban' => 1]);
+        $notification=array(
+            'message'=>'User Banned',
+            'alert-type'=>'error'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
+     //unbanned user
+    public function UserUnban($user_id){
+        User::findOrFail($user_id)->update(['isban' => 0]);
+        $notification=array(
+        'message'=>'User UnBanned Success',
+        'alert-type'=>'success'
+    );
+    return Redirect()->back()->with($notification);
+    }
+
 }
