@@ -503,8 +503,9 @@
           <!-- /.section -->
           <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
           <!-- ============================================== SKIP BRAND PRODUCTS 2 ============================================== -->
+
           <section class="section featured-product wow fadeInUp">
-            <h3 class="section-title">@if (session()->get('language') == 'bangla') {{ $skip_brand_2->brand_name_hin }} @else {{ $skip_brand_2->brand_name_en }} @endif</h3>
+            <h3 class="section-title">@if (session()->get('language') == 'bangla') {{ $skip_brand_2->brand_name_hin ?? '' }} @else {{ $skip_brand_2->brand_name_en ?? '' }} @endif</h3>
             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
 
                 @foreach ($skip_brand_product_2 as $product )
@@ -601,7 +602,17 @@
 
           <!-- ============================================== SKIP cat PRODUCTS 0 ============================================== -->
           <section class="section featured-product wow fadeInUp">
-            <h3 class="section-title">@if (session()->get('language') == 'hindi') {{ $skip_category_0->category_name_hin }} @else {{ $skip_category_0->category_name_en }} @endif</h3>
+            <h3 class="section-title">
+              @if ($skip_category_0)
+                  @if (session()->get('language') == 'hindi')
+                      {{ $skip_category_0->category_name_hin }}
+                  @else
+                      {{ $skip_category_0->category_name_en }}
+                  @endif
+              @else
+                  {{ __('Category Not Found') }}
+              @endif
+            </h3>
             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
 
                 @foreach ($skip_product_0 as $product )
@@ -671,7 +682,17 @@
           <!-- ============================================== SKIP PRODUCTS 0 : END ============================================== -->
           <!-- ============================================== SKIP cat PRODUCTS 1 ============================================== -->
           <section class="section featured-product wow fadeInUp">
-            <h3 class="section-title">@if (session()->get('language') == 'hindi') {{ $skip_category_1->category_name_hin }} @else {{ $skip_category_1->category_name_en }} @endif</h3>
+            <h3 class="section-title">
+              @if ($skip_category_1)
+                  @if (session()->get('language') == 'hindi') 
+                      {{ $skip_category_1->category_name_hin }} 
+                  @else 
+                      {{ $skip_category_1->category_name_en }} 
+                  @endif
+              @else
+                  {{ __('Category Not Found') }} <!-- Fallback text if category is null -->
+              @endif
+          </h3>
             <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
 
                 @foreach ($skip_product_1 as $product )
